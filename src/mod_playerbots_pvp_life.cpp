@@ -77,7 +77,7 @@ public:
         bool hasRealPlayer = false;
         for (GroupReference const* ref = group->GetFirstMember(); ref != nullptr; ref = ref->next())
         {
-            Player const* member = ref->GetSource();
+            Player* member = ref->GetSource();
             if (member && member->GetSession() && !GET_PLAYERBOT_AI(member))
             {
                 hasRealPlayer = true;
@@ -90,7 +90,7 @@ public:
             sPvPLifeMgr.OnAddGroupMember(guid.GetCounter());
             for (GroupReference const* ref = group->GetFirstMember(); ref != nullptr; ref = ref->next())
             {
-                Player const* member = ref->GetSource();
+                Player* member = ref->GetSource();
                 if (member && member->GetSession() && GET_PLAYERBOT_AI(member))
                     sPvPLifeMgr.OnAddGroupMember(member->GetGUID().GetCounter());
             }
