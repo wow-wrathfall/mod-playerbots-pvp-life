@@ -11,6 +11,7 @@
 #include "CommandScript.h"
 #include "ObjectAccessor.h"
 #include "Player.h"
+#include "Playerbots.h"
 #include "PlayerScript.h"
 #include "ScriptMgr.h"
 #include "WorldScript.h"
@@ -77,7 +78,7 @@ public:
         for (GroupReference const* ref = group->GetFirstMember(); ref != nullptr; ref = ref->next())
         {
             Player const* member = ref->GetSource();
-            if (member && member->GetSession() && !member->GetSession()->IsBot())
+            if (member && member->GetSession() && !GET_PLAYERBOT_AI(member))
             {
                 hasRealPlayer = true;
                 break;
@@ -90,7 +91,7 @@ public:
             for (GroupReference const* ref = group->GetFirstMember(); ref != nullptr; ref = ref->next())
             {
                 Player const* member = ref->GetSource();
-                if (member && member->GetSession() && member->GetSession()->IsBot())
+                if (member && member->GetSession() && GET_PLAYERBOT_AI(member))
                     sPvPLifeMgr.OnAddGroupMember(member->GetGUID().GetCounter());
             }
         }

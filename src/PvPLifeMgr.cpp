@@ -794,7 +794,7 @@ namespace PvPLife
             for (GroupReference const* ref = player->GetGroup()->GetFirstMember(); ref != nullptr; ref = ref->next())
             {
                 Player const* member = ref->GetSource();
-                if (member && member->GetSession() && !member->GetSession()->IsBot())
+                if (member && member->GetSession() && !GET_PLAYERBOT_AI(member))
                     return; // Yield completely to human party leader
             }
         }
